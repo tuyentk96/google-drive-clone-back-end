@@ -1,0 +1,31 @@
+const express = require('express')
+
+const { asyncHandler } = require('../../response/asyncHandler')
+const UploadController = require('../../controllers/upload.controller')
+const router = express.Router()
+const upload = require('../../configs/config.upload')
+
+router.post('/uploads/upload-files', upload.array('files', 10), asyncHandler(UploadController.uploadFiles))
+router.post('/uploads/new-folder', asyncHandler(UploadController.uploadNewFoler))
+router.get('/uploads/get-storage', asyncHandler(UploadController.getStorage))
+router.get('/uploads/get-share-with-me', asyncHandler(UploadController.getShareWithMe))
+router.get('/uploads/get-folder-my-drive', asyncHandler(UploadController.getFolder))
+router.get('/uploads/get-folder-share-with-me', asyncHandler(UploadController.getFolderShareWithMe))
+router.post('/uploads/delete', asyncHandler(UploadController.deleteFolderOrFile))
+router.post('/uploads/delete-double', asyncHandler(UploadController.deleteDouble))
+router.post('/uploads/restore', asyncHandler(UploadController.restore))
+router.post('/uploads/share', asyncHandler(UploadController.shareData))
+router.post('/uploads/rename', asyncHandler(UploadController.rename))
+router.post('/uploads/disable-star', asyncHandler(UploadController.disableStar))
+router.post('/uploads/add-star', asyncHandler(UploadController.addStar))
+router.post('/uploads/change-public', asyncHandler(UploadController.changePublic))
+router.get('/uploads/get-star', asyncHandler(UploadController.getStar))
+router.get('/uploads/check-share', asyncHandler(UploadController.checkPermissionShareData))
+router.get('/uploads/get-folder-trash', asyncHandler(UploadController.getFolderTrash))
+router.get('/uploads/download', asyncHandler(UploadController.download))
+router.get('/uploads/get-folder-or-file-by-id', asyncHandler(UploadController.getFolderOrFileById))
+router.get('/uploads/get-file-by-user-id', asyncHandler(UploadController.getFileByUserId))
+router.get('/uploads/get-folder-by-user-id', asyncHandler(UploadController.getFolderByUserId))
+
+
+module.exports = router
