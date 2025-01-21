@@ -350,7 +350,7 @@ class UploadController {
             const updatePromies = listUserId.map(userId => {
                 return permissionModel.findOneAndUpdate(
                     { userId },
-                    { $addToSet: { fileId: { $each: folderId } } },
+                    { $addToSet: { fileId: { $each: [folderId] } } },
                     { new: true, upsert: true }
                 );
             })
@@ -365,10 +365,7 @@ class UploadController {
             await Promise.all(updatePromies);
 
         } else {
-
-
-
-            let { allFolderIds, allFileIds } = await getAllFolder(folderId);
+            let { allFolderIds = [], allFileIds = [] } = await getAllFolder(folderId);
             allFolderIds.push(folderId)
 
             const updatePermissionFolderPromies = listUserId.map(userId => {
