@@ -27,5 +27,4 @@ router.get('/uploads/get-folder-or-file-by-id', asyncHandler(UploadController.ge
 router.get('/uploads/get-file-by-user-id', asyncHandler(UploadController.getFileByUserId))
 router.get('/uploads/get-folder-by-user-id', asyncHandler(UploadController.getFolderByUserId))
 
-
 module.exports = router
